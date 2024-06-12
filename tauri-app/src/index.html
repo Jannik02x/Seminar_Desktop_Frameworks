@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tauri App</title>
+    <script type="module" src="/main.js" defer></script>
+
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>ToDo-App</h1>
+      <p id="loading">Loading ToDos...</p>
+
+      <template id="todoTemplate">
+        <div class="todo">
+          <div class="todoInfo">
+            <h2 class="todoTitle">Heading</h2>
+            <p contenteditable="true" class="todoDescription">Description</p>
+          </div>
+          <div class="todoControl">
+            <input type="checkbox" id="checkTodo">
+            <img class="deleteTodo" src="assets/delete.svg" alt="Delete icon"/>
+
+          </div>
+        </div>
+      </template>
+
+      <div id="todoView">
+
+      </div>
+      
+      <div class="addTodo">
+        <h2>Add ToDo</h2>
+        <form class="column" id="todo-form">
+          <input id="title-input" placeholder="Enter a title..." />
+          <input id="description-input" placeholder="Enter a description..." />
+          <button type="submit">Add</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
