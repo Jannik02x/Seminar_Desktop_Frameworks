@@ -1,7 +1,6 @@
 import { randomUUID } from "crypto";
 import { Todo } from "../model/todo";
 
-//TODO: testdata
 let todos:Todo[] = [
     {
         id: randomUUID(),
@@ -30,7 +29,6 @@ class TodoService {
     getTodos():Todo[] {        
         return structuredClone(todos);
     }
-    //TODO: delete?
     getTodo(id:string) {
         const todo = todos.find((t) => t.id === id);
         return structuredClone(todo);
@@ -40,9 +38,9 @@ class TodoService {
         
         const todo = todos.find((t) => t.id === id);
         if (todo) {
-            todo.title = title || todo.title;
-            todo.description = description || todo.description;
-            todo.completed = completed != undefined ? completed : todo.completed;            
+            todo.title = title ?? todo.title;
+            todo.description = description ?? todo.description;
+            todo.completed = completed ?? todo.completed;            
         }
         return todo;
     }

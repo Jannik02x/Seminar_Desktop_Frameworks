@@ -1,7 +1,10 @@
-# Tauri + Vanilla
+# Tauri ToDo app
+This a native desktop application that was built using the tauri framework.
+It is designed to run with the separate backend in the folder `../backend`.
+If the backend is started first, the tauri app contains example data and all functionalities from the app work correctly.
 
-This template should help get you started developing with Tauri in vanilla HTML, CSS and Javascript.
+## prerequisites
+All node modules that are required for this app are defined in the `package.json` file and have to be installed by running `npm install` inside the folder of this project.
 
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+## run the app
+To run the application you have to execute the command `npm run tauri dev` inside this tauri folder.

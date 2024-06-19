@@ -1,4 +1,3 @@
-//let todos = []
 const URL = 'http://localhost:3000/todos';
 class TodoService {
     async loadTodos() {
@@ -9,8 +8,7 @@ class TodoService {
                 "Content-Type": "application/json",
             },
         })
-        
-        //console.log(await response.json());
+
         if (response.status === 200) {
             return await response.json();
         }

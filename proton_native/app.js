@@ -1,6 +1,6 @@
 import React, { Component } from "react"; // import from react
 
-import { Window, App, View, Text, Button } from "proton-native"; // import the proton-native components
+import { Window, App, View, Text } from "proton-native"; // import the proton-native components
 import TodoService  from "./service/todoService";
 
 export default class Todo extends Component {

@@ -14,14 +14,12 @@ const createWindow = async () => {
   })
 
   win.loadFile('index.html').then(async () => {
-    win.webContents.openDevTools()
-    todos = await todoService.loadTodos();
+    const todos = await todoService.loadTodos();
     console.log("loaded");
     win.webContents.send('todos-loaded', todos)
   })
 
   ipcMain.on('add-todo', async (_, title, description) => {
-    console.log("Main!");
     const newTodo = await todoService.addTodo(title, description);
     if (newTodo) {
       win.webContents.send('todo-added', newTodo);
@@ -37,13 +35,11 @@ const createWindow = async () => {
   });
   
   ipcMain.on('delete-todo', async (_, id) => {
-    console.log("delete maain");
     const deleted = await todoService.deleteTodo(id);
     if (deleted) {
       win.webContents.send('todo-deleted', id);
     }
   });
-  
 }
 
 app.on('window-all-closed', () => {
@@ -57,7 +53,3 @@ app.whenReady().then(() => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })
 })
-
-
-
-//########################################################

@@ -1,13 +1,11 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 mod model;
-use tauri::Manager;
 use uuid::Uuid;
 use std::collections::HashMap;
 
 const URL:&str = "http://localhost:3000/todos";
 
-// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
 async fn get_todos() -> Result<Vec<model::todo::Todo>, ()> {
     println!("Get todos");
@@ -31,19 +29,14 @@ async fn get_todos() -> Result<Vec<model::todo::Todo>, ()> {
             panic!("Something unexpected happened: {:?}", other);
         }
     };
-    
-    //TODO: println!("{:?}", state.lock().unwrap().value);
-    //println!("todos: {:?}", todos);
     todos
-    //Ok(format!("Hello, mate! You've been greeted from Rust!"))
-
 }
 
 
 #[tauri::command]
 async fn add_todo(title: String, description: String) -> Result<model::todo::Todo, ()> {
     println!("add todo");
-    let mut body = HashMap::new(); //TODO: body wie unten machen
+    let mut body = HashMap::new();
     body.insert("title", title);
     body.insert("description", description);
     let response = reqwest::Client::new()
@@ -107,7 +100,7 @@ async fn delete_todo(id: Uuid) -> Result<bool, ()> {
     let mut body = HashMap::new();
     body.insert("id", id);
     let response = reqwest::Client::new()
-        .delete(format!("{URL}/{id}")) // url braucht id
+        .delete(format!("{URL}/{id}"))
         .json(&body)
         .send()
         .await
@@ -127,11 +120,6 @@ async fn delete_todo(id: Uuid) -> Result<bool, ()> {
 
 fn main() {
     tauri::Builder::default()
-        //.setup(|app| {
-        //    #[cfg(debug_assertions)]
-        //    app.get_window("main").unwrap().open_devtools(); // `main` is the first window from tauri.conf.json without an explicit label
-        //    Ok(())
-        //  })
         .invoke_handler(tauri::generate_handler![get_todos, add_todo, update_todo, delete_todo])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
